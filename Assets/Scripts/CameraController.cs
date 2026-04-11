@@ -3,6 +3,8 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public GameObject playerCharacter;
+    public GameObject startBeehive;
+    public GameObject endBeehive;
     private PlayerController playerController;
 
     private void Awake()
@@ -13,8 +15,15 @@ public class CameraController : MonoBehaviour
     {
         float playerPosX = playerCharacter.transform.position.x;
 
-        if (playerPosX < 0 || playerPosX > (playerController.xBound * 11)) return;
-
-        transform.position = new Vector2 (playerPosX, transform.position.y);
+        if (playerPosX < startBeehive.transform.position.x || playerPosX > endBeehive.transform.position.x)
+        {
+            playerController.xBounded = true;
+            return;
+        }
+        else
+        {
+            playerController.xBounded = false;
+            transform.position = new Vector2(playerPosX, transform.position.y);
+        }
     }
 }

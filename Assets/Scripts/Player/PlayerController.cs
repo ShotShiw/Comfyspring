@@ -4,11 +4,13 @@ using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public GameObject cameraObj;
 
     private float speed = 5f;
     public float xBound = 6f;
     private float yBound = 4.5f;
+
+    public bool xBounded;
     void Start()
     {
 
@@ -19,7 +21,6 @@ public class PlayerController : MonoBehaviour
     {
         MovePlayer();
         PlayerBounds();
-
     }
 
     void MovePlayer()
@@ -35,14 +36,20 @@ public class PlayerController : MonoBehaviour
 
     void PlayerBounds()
     {
-        if (transform.position.x > (xBound * 12))
+      if (xBounded) 
+      { 
+        float camBoundsPos = cameraObj.transform.position.x + xBound;
+        float camBoundsNeg = cameraObj.transform.position.x - xBound;
+        if (transform.position.x > camBoundsPos)
         {
-            transform.position = new Vector3((xBound * 12), transform.position.y, transform.position.z);
+            transform.position = new Vector3(camBoundsPos, transform.position.y, transform.position.z);
         }
-        if (transform.position.x < -xBound)
+        if (transform.position.x < camBoundsNeg)
         {
-            transform.position = new Vector3(-xBound, transform.position.y, transform.position.z);
+            transform.position = new Vector3(camBoundsNeg, transform.position.y, transform.position.z);
         }
+      }
+
         if (transform.position.y > yBound)
         {
             transform.position = new Vector3(transform.position.x, yBound, transform.position.z);
