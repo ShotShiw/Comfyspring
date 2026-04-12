@@ -1,7 +1,7 @@
 using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.UIElements;
-
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public GameObject cameraObj;
@@ -65,6 +65,10 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             Destroy(gameObject);
+        }
+        if (other.gameObject.CompareTag("Beehive"))
+        {
+            SceneManager.LoadScene("Shop");
         }
     }
 
