@@ -459,7 +459,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -888,6 +888,18 @@ PrefabInstance:
     - target: {fileID: 2948327874326027202, guid: a381d8617dc428047aab4b51173a2b5c, type: 3}
       propertyPath: m_LocalPosition.z
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4792801800189138615, guid: a381d8617dc428047aab4b51173a2b5c, type: 3}
+      propertyPath: m_Size.x
+      value: 1.4245913
+      objectReference: {fileID: 0}
+    - target: {fileID: 4792801800189138615, guid: a381d8617dc428047aab4b51173a2b5c, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.21229574
+      objectReference: {fileID: 0}
+    - target: {fileID: 6254767436181083075, guid: a381d8617dc428047aab4b51173a2b5c, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7146646920222424367, guid: a381d8617dc428047aab4b51173a2b5c, type: 3}
       propertyPath: m_Name

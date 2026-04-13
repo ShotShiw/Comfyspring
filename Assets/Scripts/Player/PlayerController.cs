@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public bool xBounded;
     void Start()
     {
-
+       
     }
 
     // Update is called once per frame
@@ -59,17 +59,11 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(transform.position.x, -yBound, transform.position.z);
         }
     }
-
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            Destroy(gameObject);
-        }
-        if (other.gameObject.CompareTag("Beehive"))
+        if(other.gameObject.tag == "Beehive")
         {
             SceneManager.LoadScene("Shop");
         }
     }
-
 }
