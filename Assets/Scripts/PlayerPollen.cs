@@ -5,18 +5,24 @@ public class PlayerPollen : MonoBehaviour
     [SerializeField] private NectarGauge nectarGauge;
 
     
-    public int pollenCount = 0;
+    public int pollenCount = 0; //flowers pollonated
+    public int nectarCount = 0; //game currency
 
 
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("bee trigger something!");
         if (other.CompareTag("Pollen"))
         {
             Destroy(other.gameObject);
-            pollenCount += 5;
-            nectarGauge.ChangeCount(pollenCount);
+            pollenCount += 1;
+            nectarCount += 5;
+            nectarGauge.ChangeCount(nectarCount);
         }
+    }
+
+    public void UpdateNectarCount()
+    {
+        nectarGauge.ChangeCount(nectarCount);
     }
 }

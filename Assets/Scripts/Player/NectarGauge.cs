@@ -11,7 +11,7 @@ public class NectarGauge : MonoBehaviour
     {
         nectarCount = nectarMod;
         nectarCount = Mathf.Clamp(nectarCount, 0, 100);
-        fillGauge.fillAmount = (float)(nectarCount * 0.01);
+        fillGauge.fillAmount = (float)(nectarCount * 0.01 + 0.04f);
     }
 
 }

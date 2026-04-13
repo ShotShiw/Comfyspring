@@ -5,15 +5,19 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public GameObject cameraObj;
+    public GameObject shop;
 
     private float speed = 5f;
     public float xBound = 6f;
     private float yBound = 4.5f;
 
+    private Vector3 spawnPos;
+    private bool canMove = true;
+
     public bool xBounded;
     void Start()
     {
-       
+        spawnPos = transform.position;
     }
 
     // Update is called once per frame
@@ -29,9 +33,11 @@ public class PlayerController : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
 
-
-        transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
-        transform.Translate(Vector3.up * Time.deltaTime * speed * verticalInput);
+        if (canMove)
+        {
+            transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
+            transform.Translate(Vector3.up * Time.deltaTime * speed * verticalInput);
+        }
     }
 
     void PlayerBounds()
@@ -66,4 +72,34 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene("Shop");
         }
     }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            //transform.position = spawnLocation;
+            //Destroy(gameObject);
+            //maybe loose nector
+            Respawn();
+        }
+        if (other.gameObject.CompareTag("Beehive"))
+        {
+            canMove = false;
+            //this moves the bee to the bee hive and opens the shop when close enough
+            transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(other.transform.position.x, other.transform.position.y - 0.5f, transform.position.z), speed * Time.deltaTime);
+            if (Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(other.transform.position.x, other.transform.position.y - 0.5f)) < 0.2f)
+            {
+                shop.SetActive(true);
+                //SceneManager.LoadScene("Shop");
+            }
+        }
+    }
+
+    public void Respawn()
+    {
+        shop.SetActive(false);
+        canMove = true;
+        transform.position = spawnPos;
+    }
+
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pollen
   - Beehive
+  - Enemy
   layers:
   - Default
   - TransparentFX
