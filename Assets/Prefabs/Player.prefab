@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 6596833353717110746}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -413,8 +413,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraObj: {fileID: 0}
   shop: {fileID: 3424561425359556963}
+  rb2D: {fileID: 8044321413643141900}
+  playerPollen: {fileID: 4567531665458386444}
   xBound: 6
   xBounded: 0
+  invincible: 0
+  inShop: 0
+  pollen: []
+  bodySprite: {fileID: 6400746162508259771}
 --- !u!114 &4567531665458386444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,7 +449,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.1
+  m_LinearDamping: 3
   m_AngularDamping: 0.1
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -455,8 +461,8 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!114 &6596833353717110746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1359,6 +1365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 144892b41bee36c42944e344eaf5e920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idAccessory: 0
 --- !u!1 &2813356022185664020
 GameObject:
   m_ObjectHideFlags: 0

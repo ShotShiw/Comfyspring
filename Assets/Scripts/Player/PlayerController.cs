@@ -2,10 +2,13 @@ using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using System.Collections;
 public class PlayerController : MonoBehaviour
 {
     public GameObject cameraObj;
     public GameObject shop;
+    public Rigidbody2D rb2D;
+    public PlayerPollen playerPollen;
 
     private float speed = 5f;
     public float xBound = 6f;
@@ -15,8 +18,11 @@ public class PlayerController : MonoBehaviour
     private bool canMove = true;
 
     public bool xBounded;
+    public bool invincible;
+    [HideInInspector] public bool inShop = true;
 
     [SerializeField] private GameObject[] pollen;
+    [SerializeField] private SpriteRenderer bodySprite;
     void Start()
     {
         spawnPos = transform.position;
@@ -89,6 +95,8 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Beehive"))
         {
             canMove = false;
+            inShop = true;
+            invincible = true;
             //this moves the bee to the bee hive and opens the shop when close enough
             transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(other.transform.position.x, other.transform.position.y - 0.5f, transform.position.z), speed * Time.deltaTime);
             if (Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(other.transform.position.x, other.transform.position.y - 0.5f)) < 0.2f)
@@ -108,6 +116,45 @@ public class PlayerController : MonoBehaviour
         shop.SetActive(false);
         canMove = true;
         transform.position = spawnPos;
+        inShop = false;
+        invincible = false;
+    }
+
+    public void ObstacleCollision(int lostPollen)
+    {
+        StartCoroutine(MoveStun(0.5f));
+        StartCoroutine(MercyInvincibility());
+        playerPollen.LosePollen(lostPollen);
+        
+    }
+
+    IEnumerator MoveStun(float stunTime)
+    {
+        canMove = false;
+
+        yield return new WaitForSeconds(stunTime);
+
+        canMove = true;
+    }
+
+    IEnumerator MercyInvincibility()
+    {
+        invincible = true;
+        bodySprite.color = new Color(0.7f, 0.7f, 0.7f);
+
+        yield return new WaitForSeconds(3);
+
+        invincible = false;
+        bodySprite.color = new Color(1, 1, 1);
+    }
+
+    public IEnumerator SlowEffect(float slowInt, float duration)
+    {
+        speed -= slowInt;
+
+        yield return new WaitForSeconds(duration);
+
+        speed += slowInt;
     }
 
 }

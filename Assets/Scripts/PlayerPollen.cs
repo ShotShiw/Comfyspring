@@ -20,6 +20,15 @@ public class PlayerPollen : MonoBehaviour
         }
     }
 
+    public void LosePollen(int lostPollen)
+    {
+        pollenCount -= lostPollen;
+        pollenCount = Mathf.Clamp(pollenCount, 0, 100);
+        nectarCount -= (lostPollen * 5);
+        nectarCount = Mathf.Clamp(nectarCount, 0, 100);
+        nectarGauge.ChangeCount(nectarCount);
+    }
+
     public void UpdateNectarCount()
     {
         nectarGauge.ChangeCount(nectarCount);
