@@ -4,8 +4,7 @@ using UnityEngine;
 public class AccesoriesChanger : MonoBehaviour
 {
     public SpriteRenderer hatSlot;
-    [Header("Sprite")]
-    public Sprite[] options;
+    public SpriteRenderer glassesSlot;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,9 +16,18 @@ public class AccesoriesChanger : MonoBehaviour
     {
 
     }
-    public void ChangeAccessorie(Sprite currentAcessory)
+    public void ChangeAccessorie(int id, Sprite currentAcessory)
     {
-        hatSlot.sprite = currentAcessory;
+        if (id == 0)
+        {
+            hatSlot.sprite = currentAcessory;
+
+        }
+        if (id == 1)
+        {
+           glassesSlot.sprite = currentAcessory;
+
+        }
 
     }
 }

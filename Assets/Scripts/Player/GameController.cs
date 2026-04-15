@@ -16,14 +16,19 @@ public class GameController : MonoBehaviour
     {
         
     }
-    public void Back()
+    public void StartGame()
     {
         SceneManager.LoadScene("SampleScene");
     }
-   public void BuyItem()
+    public void LeaveGame()
+    {
+       Application.Quit();
+    }
+    public void BuyItem()
     {
         Image img = GetComponent<Image>();
-        acessories.ChangeAccessorie(img.sprite);
+      
+       
        
     }
 }
