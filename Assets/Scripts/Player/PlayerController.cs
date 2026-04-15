@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         spawnPos = transform.position;
+        pollen = GameObject.FindGameObjectsWithTag("Pollen");
     }
 
     // Update is called once per frame
