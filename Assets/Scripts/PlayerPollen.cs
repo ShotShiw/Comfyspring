@@ -4,7 +4,6 @@ public class PlayerPollen : MonoBehaviour
 {
     [SerializeField] private NectarGauge nectarGauge;
 
-    
     public int pollenCount = 0; //flowers pollonated
     public int nectarCount = 0; //game currency
 
@@ -14,7 +13,7 @@ public class PlayerPollen : MonoBehaviour
     {
         if (other.CompareTag("Pollen"))
         {
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
             pollenCount += 1;
             nectarCount += 5;
             nectarGauge.ChangeCount(nectarCount);

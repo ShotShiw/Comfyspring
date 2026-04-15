@@ -42,7 +42,11 @@ public class HoneyCombShop : MonoBehaviour
         {
             //equip
             Debug.Log("equip item");
-            AccesoriesChan.ChangeAccessorie(itemImage.sprite);
+            int accesoryId = gameObject.GetComponent<ID>().idAccessory;
+            if (AccesoriesChan != null)
+            {
+                AccesoriesChan.ChangeAccessorie(accesoryId, itemImage.sprite);
+            }
         }
         else
         {

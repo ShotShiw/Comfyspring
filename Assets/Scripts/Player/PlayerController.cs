@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     private bool canMove = true;
 
     public bool xBounded;
+
+    [SerializeField] private GameObject[] pollen;
     void Start()
     {
         spawnPos = transform.position;
@@ -43,8 +45,9 @@ public class PlayerController : MonoBehaviour
     void PlayerBounds()
     {
       if (xBounded) 
-      { 
-        float camBoundsPos = cameraObj.transform.position.x + xBound;
+      {
+         
+            float camBoundsPos = cameraObj.transform.position.x + xBound;
         float camBoundsNeg = cameraObj.transform.position.x - xBound;
         if (transform.position.x > camBoundsPos)
         {
@@ -58,6 +61,7 @@ public class PlayerController : MonoBehaviour
 
         if (transform.position.y > yBound)
         {
+
             transform.position = new Vector3(transform.position.x, yBound, transform.position.z);
         }
         if (transform.position.y < -yBound)
@@ -89,6 +93,10 @@ public class PlayerController : MonoBehaviour
             transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(other.transform.position.x, other.transform.position.y - 0.5f, transform.position.z), speed * Time.deltaTime);
             if (Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(other.transform.position.x, other.transform.position.y - 0.5f)) < 0.2f)
             {
+                foreach (GameObject p in pollen)
+                {
+                    p.SetActive(true);
+                }
                 shop.SetActive(true);
                 //SceneManager.LoadScene("Shop");
             }
