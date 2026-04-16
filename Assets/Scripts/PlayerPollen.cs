@@ -13,6 +13,7 @@ public class PlayerPollen : MonoBehaviour
     {
         if (other.CompareTag("Pollen"))
         {
+            AudioManager.AM.Soundboard(5);
             other.gameObject.SetActive(false);
             pollenCount += 1;
             nectarCount += 5;

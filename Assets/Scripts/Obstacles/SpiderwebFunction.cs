@@ -11,6 +11,7 @@ public class SpiderwebFunction : MonoBehaviour
                 var playerController = collision.gameObject.GetComponent<PlayerController>();
                 if (!playerController.invincible)
                 {
+                    AudioManager.AM.Soundboard(7);
                     playerController.SpiderwebCollision();
                     Destroy(gameObject);
                 }

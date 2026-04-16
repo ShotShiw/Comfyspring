@@ -87,11 +87,12 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(transform.position.x, -yBound, transform.position.z);
         }
     }
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Beehive")
         {
-            SceneManager.LoadScene("Shop");
+            AudioManager.AM.Soundboard(1);
+            //SceneManager.LoadScene("Shop");
         }
     }
 
@@ -118,13 +119,14 @@ public class PlayerController : MonoBehaviour
                     p.SetActive(true);
                 }
                 shop.SetActive(true);
-                //SceneManager.LoadScene("Shop");
             }
         }
     }
 
     public void Respawn()
     {
+        AudioManager.AM.Soundboard(1);
+        AudioManager.AM.Soundboard(8);
         shop.SetActive(false);
         canMove = true;
         inShop = false;
@@ -135,6 +137,7 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
+        AudioManager.AM.Soundboard(3);
         shop.SetActive(false);
         canMove = true;
         inShop = false;
@@ -184,6 +187,7 @@ public class PlayerController : MonoBehaviour
 
     public void SpiderwebCollision()
     {
+        AudioManager.AM.Soundboard(7);
         StartCoroutine(SlowEffect(2, 8));
         ObstacleCollision(4);
     }

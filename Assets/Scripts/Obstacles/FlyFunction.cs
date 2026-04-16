@@ -51,6 +51,7 @@ public class FlyFunction : MonoBehaviour
                 var playerController = collision.gameObject.GetComponent<PlayerController>();
                 if (!playerController.invincible)
                 {
+                    AudioManager.AM.Soundboard(2);
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.right * -7, ForceMode2D.Impulse);
                     playerController.ObstacleCollision(3);
                     Destroy(gameObject);

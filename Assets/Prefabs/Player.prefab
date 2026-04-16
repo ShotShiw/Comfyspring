@@ -585,7 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPol: {fileID: 0}
-  costToUnlock: 10
+  costToUnlock: 20
   fillHoneycomb: {fileID: 5841609899126352028}
   itemImage: {fileID: 0}
   currentllyClickedOn: 0
@@ -1162,7 +1162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPol: {fileID: 0}
-  costToUnlock: 10
+  costToUnlock: 20
   fillHoneycomb: {fileID: 7016638008690819532}
   itemImage: {fileID: 0}
   currentllyClickedOn: 0
@@ -1781,7 +1781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPol: {fileID: 0}
-  costToUnlock: 10
+  costToUnlock: 50
   fillHoneycomb: {fileID: 8119354700729162360}
   itemImage: {fileID: 0}
   currentllyClickedOn: 0
@@ -2024,7 +2024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPol: {fileID: 0}
-  costToUnlock: 10
+  costToUnlock: 50
   fillHoneycomb: {fileID: 6202528686405187106}
   itemImage: {fileID: 0}
   currentllyClickedOn: 0
@@ -2672,7 +2672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPol: {fileID: 0}
-  costToUnlock: 10
+  costToUnlock: 20
   fillHoneycomb: {fileID: 1617295603620808274}
   itemImage: {fileID: 0}
   currentllyClickedOn: 0

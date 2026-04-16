@@ -16,6 +16,7 @@ public class WaterDroplets : MonoBehaviour
                 var playerController = collision.gameObject.GetComponent<PlayerController>();
                 if (!playerController.invincible)
                 {
+                    AudioManager.AM.Soundboard(6);
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * -6, ForceMode2D.Impulse);
                     playerController.ObstacleCollision(3);
                     Destroy(gameObject);

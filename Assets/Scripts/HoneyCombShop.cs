@@ -40,6 +40,7 @@ public class HoneyCombShop : MonoBehaviour
     {
         if (currentNectar >= costToUnlock)
         {
+            AudioManager.AM.Soundboard(8);
             //equip
             Debug.Log("equip item");
             int accesoryId = gameObject.GetComponent<ID>().idAccessory;
@@ -50,6 +51,10 @@ public class HoneyCombShop : MonoBehaviour
         }
         else
         {
+            if (playerPol.nectarCount > 1)
+            {
+                AudioManager.AM.Soundboard(4);
+            }
             currentllyClickedOn = true;
         }
 
