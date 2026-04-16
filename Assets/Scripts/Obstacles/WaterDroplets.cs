@@ -3,7 +3,7 @@ using UnityEngine;
 public class WaterDroplets : MonoBehaviour
 {
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 6)
         {
@@ -17,10 +17,10 @@ public class WaterDroplets : MonoBehaviour
                 if (!playerController.invincible)
                 {
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * -6, ForceMode2D.Impulse);
-                    playerController.ObstacleCollision(1);
+                    playerController.ObstacleCollision(3);
+                    Destroy(gameObject);
                 }
             }
-            Destroy(gameObject);
         }
     }
 }

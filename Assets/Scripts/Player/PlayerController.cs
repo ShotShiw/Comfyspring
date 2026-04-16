@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public GameObject shop;
     public Rigidbody2D rb2D;
     public PlayerPollen playerPollen;
+    
 
     private float speed = 5f;
     public float xBound = 6f;
@@ -24,7 +25,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool inShop = true;
 
     [SerializeField] private GameObject[] pollen;
-    [SerializeField] private SpriteRenderer bodySprite;
+    [SerializeField] private SpriteRenderer[] bodySprites;
+    public GameObject webStatusImage;
     void Start()
     {
         spawnPos = transform.position;
@@ -48,6 +50,13 @@ public class PlayerController : MonoBehaviour
         {
             transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
             transform.Translate(Vector3.up * Time.deltaTime * speed * verticalInput);
+            if (horizontalInput != 0)
+            {
+                foreach (SpriteRenderer sprite in bodySprites)
+                {
+                    sprite.flipX = (horizontalInput < 0);
+                }
+            }
         }
     }
 
@@ -131,6 +140,7 @@ public class PlayerController : MonoBehaviour
         inShop = false;
         invincible = false;
         transform.position = spawnPos;
+        playerPollen.LosePollen(playerPollen.pollenCount / 2);
     }
 
     private void LatePollenCheck()
@@ -158,21 +168,35 @@ public class PlayerController : MonoBehaviour
     IEnumerator MercyInvincibility()
     {
         invincible = true;
-        bodySprite.color = new Color(0.7f, 0.7f, 0.7f);
+        foreach (SpriteRenderer sprite in bodySprites)
+        { 
+            sprite.color = new Color(0.7f, 0.7f, 0.7f);
+        }
 
         yield return new WaitForSeconds(3);
 
         invincible = false;
-        bodySprite.color = new Color(1, 1, 1);
+        foreach (SpriteRenderer sprite in bodySprites)
+        {
+            sprite.color = new Color(1, 1, 1);
+        }
     }
 
-    public IEnumerator SlowEffect(float slowInt, float duration)
+    public void SpiderwebCollision()
+    {
+        StartCoroutine(SlowEffect(2, 8));
+        ObstacleCollision(4);
+    }
+
+    IEnumerator SlowEffect(float slowInt, float duration)
     {
         speed -= slowInt;
+        webStatusImage.SetActive(true);
 
         yield return new WaitForSeconds(duration);
 
         speed += slowInt;
+        webStatusImage.SetActive(false);
     }
 
 }

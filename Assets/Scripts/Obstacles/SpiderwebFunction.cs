@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SpiderwebFunction : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -11,11 +11,10 @@ public class SpiderwebFunction : MonoBehaviour
                 var playerController = collision.gameObject.GetComponent<PlayerController>();
                 if (!playerController.invincible)
                 {
-                    StartCoroutine(playerController.SlowEffect(2.5f, 5));
-                    playerController.ObstacleCollision(1);
+                    playerController.SpiderwebCollision();
+                    Destroy(gameObject);
                 }
             }
-            Destroy(gameObject);
         }
     }
 
