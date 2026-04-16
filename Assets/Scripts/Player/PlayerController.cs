@@ -26,7 +26,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private GameObject[] pollen;
     [SerializeField] private SpriteRenderer[] bodySprites;
+    [SerializeField] private GameObject RenderedBody;
+
     public GameObject webStatusImage;
+
     void Start()
     {
         spawnPos = transform.position;
@@ -52,10 +55,19 @@ public class PlayerController : MonoBehaviour
             transform.Translate(Vector3.up * Time.deltaTime * speed * verticalInput);
             if (horizontalInput != 0)
             {
+               
                 foreach (SpriteRenderer sprite in bodySprites)
                 {
-                    sprite.flipX = (horizontalInput < 0);
+                    //sprite.flipX = (horizontalInput < 0);
                 }
+            }
+            if (horizontalInput < -0.001)
+            {
+                RenderedBody.transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else
+            {
+                RenderedBody.transform.localScale = new Vector3(1, 1, 1);
             }
         }
     }

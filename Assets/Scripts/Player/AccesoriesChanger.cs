@@ -5,6 +5,8 @@ public class AccesoriesChanger : MonoBehaviour
 {
     public SpriteRenderer hatSlot;
     public SpriteRenderer glassesSlot;
+    public SpriteRenderer tieSlot;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,6 +30,10 @@ public class AccesoriesChanger : MonoBehaviour
            glassesSlot.sprite = currentAcessory;
 
         }
+        if (id == 2)
+        {
+            tieSlot.sprite = currentAcessory;
 
+        }
     }
 }
