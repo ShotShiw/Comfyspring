@@ -25,11 +25,11 @@ public class HoneyCombShop : MonoBehaviour
     void FixedUpdate()
     {
         fillTimer -= Time.fixedDeltaTime;
-        if (playerPol.nectarCount > 0 && fillTimer < 0 && currentllyClickedOn)
+        if (playerPol.nectarCount > 0 && fillTimer < 0 && currentllyClickedOn && currentNectar < costToUnlock)
         {
             fillTimer = fillRate;
-            playerPol.nectarCount -= 1;
-            currentNectar += 1;
+            playerPol.nectarCount -= 2;
+            currentNectar += 2;
             currentNectar = Mathf.Clamp(currentNectar, 0, costToUnlock);
             fillHoneycomb.fillAmount = ((float)currentNectar / costToUnlock);
             playerPol.UpdateNectarCount();

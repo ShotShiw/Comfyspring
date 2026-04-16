@@ -1,4 +1,4 @@
-using UnityEditor.Build.Content;
+//using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     public bool xBounded;
     public bool invincible;
+
+
     [HideInInspector] public bool inShop = true;
 
     [SerializeField] private GameObject[] pollen;
@@ -91,7 +93,7 @@ public class PlayerController : MonoBehaviour
             //transform.position = spawnLocation;
             //Destroy(gameObject);
             //maybe loose nector
-            Respawn();
+            Die();
         }
         if (other.gameObject.CompareTag("Beehive"))
         {
@@ -99,8 +101,8 @@ public class PlayerController : MonoBehaviour
             inShop = true;
             invincible = true;
             //this moves the bee to the bee hive and opens the shop when close enough
-            transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(other.transform.position.x, other.transform.position.y - 0.5f, transform.position.z), speed * Time.deltaTime);
-            if (Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(other.transform.position.x, other.transform.position.y - 0.5f)) < 0.2f)
+            transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(other.transform.position.x, other.transform.position.y, transform.position.z), speed * Time.deltaTime);
+            if (Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(other.transform.position.x, other.transform.position.y)) < 0.2f)
             {
                 foreach (GameObject p in pollen)
                 {
@@ -116,9 +118,24 @@ public class PlayerController : MonoBehaviour
     {
         shop.SetActive(false);
         canMove = true;
-        transform.position = spawnPos;
         inShop = false;
         invincible = false;
+        transform.position = spawnPos;
+        Invoke("LatePollenCheck", 0.8f);
+    }
+
+    public void Die()
+    {
+        shop.SetActive(false);
+        canMove = true;
+        inShop = false;
+        invincible = false;
+        transform.position = spawnPos;
+    }
+
+    private void LatePollenCheck()
+    {
+        pollen = GameObject.FindGameObjectsWithTag("Pollen");
     }
 
     public void ObstacleCollision(int lostPollen)
