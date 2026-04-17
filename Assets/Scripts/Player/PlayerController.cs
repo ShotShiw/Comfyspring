@@ -46,6 +46,11 @@ public class PlayerController : MonoBehaviour
     {
         MovePlayer();
         PlayerBounds();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+            Time.timeScale = 1;
+        }
     }
 
     void MovePlayer()

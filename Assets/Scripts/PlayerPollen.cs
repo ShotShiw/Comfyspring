@@ -18,7 +18,10 @@ public class PlayerPollen : MonoBehaviour
            
             other.gameObject.SetActive(false);
             pollenCount += 1;
-            nectarCount += 4;
+            if (nectarCount < 105)
+            {
+                nectarCount += 4;
+            }
             nectarGauge.ChangeCount(nectarCount);
         }
     }

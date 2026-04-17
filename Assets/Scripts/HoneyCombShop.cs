@@ -28,10 +28,10 @@ public class HoneyCombShop : MonoBehaviour
         if (playerPol.nectarCount > 0 && fillTimer < 0 && currentllyClickedOn && currentNectar < costToUnlock)
         {
             fillTimer = fillRate;
-            playerPol.nectarCount -= 2;
-            currentNectar += 2;
+            playerPol.nectarCount -= 3;
+            currentNectar += 3;
             currentNectar = Mathf.Clamp(currentNectar, 0, costToUnlock);
-            fillHoneycomb.fillAmount = ((float)currentNectar / costToUnlock);
+            fillHoneycomb.fillAmount = ((float)currentNectar / costToUnlock) -0.02f;
             playerPol.UpdateNectarCount();
         }
         if(currentNectar >= costToUnlock)

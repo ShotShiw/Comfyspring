@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] AccesoriesChanger acessories;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,12 +22,5 @@ public class GameController : MonoBehaviour
     public void LeaveGame()
     {
        Application.Quit();
-    }
-    public void BuyItem()
-    {
-        Image img = GetComponent<Image>();
-      
-       
-       
     }
 }
