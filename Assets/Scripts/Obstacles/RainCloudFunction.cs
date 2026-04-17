@@ -6,9 +6,11 @@ public class RainCloudFunction : MonoBehaviour
     public Transform cloudTransform;
     private PlayerController playerController;
     [SerializeField] private GameObject dropletPrefab;
+
     void Start()
     {
         playerController = FindFirstObjectByType<PlayerController>();
+        playerController.Restart = RandomizePosition;
         InvokeRepeating("SpawnDroplet", 1, 0.65f);
     }
 
@@ -18,5 +20,10 @@ public class RainCloudFunction : MonoBehaviour
         {
             Instantiate(dropletPrefab, new Vector3(cloudTransform.position.x + Random.Range(-1.8f, 1.8f), cloudTransform.position.y, cloudTransform.position.z), Quaternion.identity);
         }
+    }
+
+    private void RandomizePosition()
+    {
+        gameObject.transform.Translate((Random.Range(-12.5f, 12.5f)), 0, 0);
     }
 }

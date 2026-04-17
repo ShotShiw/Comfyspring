@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System;
 public class PlayerController : MonoBehaviour
 {
     public GameObject cameraObj;
@@ -16,12 +17,12 @@ public class PlayerController : MonoBehaviour
     private float yBound = 4.5f;
 
     private Vector3 spawnPos;
-    private bool canMove = true;
+    private bool canMove;
 
     public bool xBounded;
     public bool invincible;
 
-
+    public Action Restart;
     [HideInInspector] public bool inShop = true;
 
     [SerializeField] private GameObject[] pollen;
@@ -144,6 +145,7 @@ public class PlayerController : MonoBehaviour
         inShop = false;
         invincible = false;
         transform.position = spawnPos;
+        Restart.Invoke();
         Invoke("LatePollenCheck", 0.8f);
     }
 
