@@ -8,10 +8,10 @@ public class RainCloudFunction : MonoBehaviour
     private float randomizeAmount;
     [SerializeField] private GameObject dropletPrefab;
 
-    void Start()
+    void Awake()
     {
         playerController = FindFirstObjectByType<PlayerController>();
-        playerController.Restart = RandomizePosition;
+        playerController.Restart += RandomizePosition;
         InvokeRepeating("SpawnDroplet", 1, 0.65f);
     }
 
