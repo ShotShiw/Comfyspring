@@ -3,10 +3,10 @@ using UnityEngine;
 public class PlayerPollen : MonoBehaviour
 {
     [SerializeField] private NectarGauge nectarGauge;
+    [SerializeField] GameObject particles;
 
     public int pollenCount = 0; //flowers pollonated
     public int nectarCount = 0; //game currency
-
 
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -14,6 +14,8 @@ public class PlayerPollen : MonoBehaviour
         if (other.CompareTag("Pollen"))
         {
             AudioManager.AM.Soundboard(5);
+            Instantiate(particles,other.transform.position,Quaternion.identity);
+           
             other.gameObject.SetActive(false);
             pollenCount += 1;
             nectarCount += 5;
