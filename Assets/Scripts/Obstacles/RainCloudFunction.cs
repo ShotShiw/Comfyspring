@@ -5,6 +5,7 @@ public class RainCloudFunction : MonoBehaviour
 {
     public Transform cloudTransform;
     private PlayerController playerController;
+    private float randomizeAmount;
     [SerializeField] private GameObject dropletPrefab;
 
     void Start()
@@ -24,6 +25,8 @@ public class RainCloudFunction : MonoBehaviour
 
     private void RandomizePosition()
     {
-        gameObject.transform.Translate((Random.Range(-12.5f, 12.5f)), 0, 0);
+        gameObject.transform.Translate(-randomizeAmount, 0, 0);
+        randomizeAmount = Random.Range(-12.5f, 12.5f);
+        gameObject.transform.Translate(randomizeAmount, 0, 0);
     }
 }
