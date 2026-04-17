@@ -5,6 +5,7 @@ public class PlantMaster : MonoBehaviour
 {
 
     [SerializeField] private List<PlantSpawner> plants = new List<PlantSpawner>();
+    [SerializeField] private List<RandomObject> bugs = new List<RandomObject>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,6 +29,10 @@ public class PlantMaster : MonoBehaviour
         foreach (PlantSpawner ps in plants)
         {
             ps.CheckStatus();
+        }
+        foreach (RandomObject ro in bugs)
+        {
+            ro.RollRandomObject();
         }
     }
 

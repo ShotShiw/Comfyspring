@@ -18,7 +18,7 @@ public class PlayerPollen : MonoBehaviour
            
             other.gameObject.SetActive(false);
             pollenCount += 1;
-            nectarCount += 5;
+            nectarCount += 4;
             nectarGauge.ChangeCount(nectarCount);
         }
     }
@@ -27,7 +27,7 @@ public class PlayerPollen : MonoBehaviour
     {
         pollenCount -= lostPollen;
         pollenCount = Mathf.Clamp(pollenCount, 0, 100);
-        nectarCount -= (lostPollen * 5);
+        nectarCount -= (lostPollen * 4);
         nectarCount = Mathf.Clamp(nectarCount, 0, 100);
         nectarGauge.ChangeCount(nectarCount);
     }

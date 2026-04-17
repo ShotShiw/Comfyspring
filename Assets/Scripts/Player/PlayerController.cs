@@ -100,6 +100,12 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(transform.position.x, -yBound, transform.position.z);
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        AudioManager.AM.Soundboard(9);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Beehive")

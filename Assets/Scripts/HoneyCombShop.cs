@@ -34,6 +34,10 @@ public class HoneyCombShop : MonoBehaviour
             fillHoneycomb.fillAmount = ((float)currentNectar / costToUnlock);
             playerPol.UpdateNectarCount();
         }
+        if(currentNectar >= costToUnlock)
+        {
+            itemImage.color = Color.white;
+        }
     }
 
     public void ClickedOnHoneyComb()

@@ -22,6 +22,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource sound6;
     [SerializeField] private AudioSource sound7;
     [SerializeField] private AudioSource sound8;
+    [SerializeField] private AudioSource sound9;
 
 
     void Awake()
@@ -97,6 +98,10 @@ public class AudioManager : MonoBehaviour
         if (sound == 8)
         {
             sound8.Play();
+        }
+        if (sound == 9)
+        {
+            sound9.Play();
         }
     }
 }
