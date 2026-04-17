@@ -35,6 +35,10 @@ public class PlayerController : MonoBehaviour
     {
         spawnPos = transform.position;
         pollen = GameObject.FindGameObjectsWithTag("Pollen");
+        if (!shop.activeSelf)
+        {
+            canMove = true;
+        }
     }
 
     // Update is called once per frame

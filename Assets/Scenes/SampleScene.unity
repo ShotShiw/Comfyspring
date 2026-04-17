@@ -395,7 +395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6505546334658529892, guid: de6756de365a8584589c6ada12e954b3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.87
+      value: -5.25
       objectReference: {fileID: 0}
     - target: {fileID: 6505546334658529892, guid: de6756de365a8584589c6ada12e954b3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -658,7 +658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pollenCountToUnlock: 155
-  targetobject: {fileID: 1622664862}
+  targetobject: {fileID: 1628709359}
 --- !u!1 &343028005 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 537552381764144137, guid: da119e29e2fe2b84ab156e6c30966ef0, type: 3}
@@ -5293,10 +5293,10 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3424095175144014037, guid: de6756de365a8584589c6ada12e954b3, type: 3}
   m_PrefabInstance: {fileID: 1609764438}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1622664862 stripped
+--- !u!1 &1628709359 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3424095175144014037, guid: de6756de365a8584589c6ada12e954b3, type: 3}
-  m_PrefabInstance: {fileID: 170354487}
+  m_PrefabInstance: {fileID: 620140628}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1641632334
 PrefabInstance:
@@ -6629,6 +6629,10 @@ PrefabInstance:
       propertyPath: cameraObj
       value: 
       objectReference: {fileID: 519420028}
+    - target: {fileID: 7966964865265215623, guid: da119e29e2fe2b84ab156e6c30966ef0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6953356261458715964, guid: af820768edf66e1439a714e5f01e42fe, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
