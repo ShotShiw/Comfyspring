@@ -10,10 +10,11 @@ public class FlyFunction : MonoBehaviour
 
     private void Start()
     {
-        flyingSpeedX += Random.Range(-0.5f, 0.5f);
+        flyingSpeedX += Random.Range(-0.5f, 0.75f);
         if (verticalFlight)
         {
-            flyingSpeedY = Random.Range(-0.75f, 0.75f);
+            int baseYSpeed = Random.Range(-1, 2);
+            flyingSpeedY = (baseYSpeed * Random.Range(0.75f, 1.25f));
         }
     }
     private void Update()

@@ -23,6 +23,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource sound7;
     [SerializeField] private AudioSource sound8;
     [SerializeField] private AudioSource sound9;
+    [SerializeField] private AudioSource sound10;
 
 
     void Awake()
@@ -38,14 +39,12 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         song1.Play();
         musictimer = 30;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         AudioListener.volume = volume / 10.0f;
@@ -102,6 +101,10 @@ public class AudioManager : MonoBehaviour
         if (sound == 9)
         {
             sound9.Play();
+        }
+        if (sound == 10)
+        {
+            sound10.Play();
         }
     }
 }

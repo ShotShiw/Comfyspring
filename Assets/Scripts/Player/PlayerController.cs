@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     public bool xBounded;
     public bool invincible;
+    private bool webbed;
+    private float slowEffectDuration;
 
     public Action Restart;
     [HideInInspector] public bool inShop = true;
@@ -41,7 +43,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         MovePlayer();
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene(0);
             Time.timeScale = 1;
         }
+        if (webbed) SlowEffectCountdown();
     }
 
     void MovePlayer()
@@ -63,14 +65,6 @@ public class PlayerController : MonoBehaviour
         {
             transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
             transform.Translate(Vector3.up * Time.deltaTime * speed * verticalInput);
-            if (horizontalInput != 0)
-            {
-               
-                foreach (SpriteRenderer sprite in bodySprites)
-                {
-                    //sprite.flipX = (horizontalInput < 0);
-                }
-            }
             if (horizontalInput < -0.001)
             {
                 RenderedBody.transform.localScale = new Vector3(-1, 1, 1);
@@ -126,13 +120,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            //transform.position = spawnLocation;
-            //Destroy(gameObject);
-            //maybe loose nector
-            Die();
-        }
+        if (other.gameObject.CompareTag("Enemy")) Die();
         if (other.gameObject.CompareTag("Beehive"))
         {
             canMove = false;
@@ -185,7 +173,7 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(MoveStun(0.5f));
         StartCoroutine(MercyInvincibility());
         playerPollen.LosePollen(lostPollen);
-        
+        AudioManager.AM.Soundboard(10);
     }
 
     IEnumerator MoveStun(float stunTime)
@@ -217,19 +205,26 @@ public class PlayerController : MonoBehaviour
     public void SpiderwebCollision()
     {
         AudioManager.AM.Soundboard(7);
-        StartCoroutine(SlowEffect(2, 8));
         ObstacleCollision(4);
+        if (!webbed)
+        {
+            speed -= 2.5f;
+            webStatusImage.SetActive(true);
+            webbed = true;
+        }
+        slowEffectDuration += 5;
     }
 
-    IEnumerator SlowEffect(float slowInt, float duration)
+    void SlowEffectCountdown()
     {
-        speed -= slowInt;
-        webStatusImage.SetActive(true);
-
-        yield return new WaitForSeconds(duration);
-
-        speed += slowInt;
-        webStatusImage.SetActive(false);
+        slowEffectDuration -= Time.deltaTime;
+        slowEffectDuration = Mathf.Clamp(slowEffectDuration, 0, 10);
+        if (slowEffectDuration == 0)
+        {
+            webbed = false;
+            speed += 2.5f;
+            webStatusImage.SetActive(false);
+        }
     }
 
 }
